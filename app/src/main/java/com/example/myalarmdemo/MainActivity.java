@@ -18,17 +18,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        myAlarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
 
     }
 
     public void startSomething(View view) {
-            Toast.makeText(this,"Alarm stated",Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent();
-            intent.setAction("com.myown.receiver.Message");
-            intent.addCategory("android.intent.category.DEFAULT");
-            PendingIntent pd = PendingIntent.getBroadcast(this,0,intent,0);
-            myAlarmManager.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(),1000*30,pd);
+        myAlarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        Toast.makeText(this, "Alarm stated", Toast.LENGTH_SHORT).show();
+
+
+        Intent intent = new Intent(this, NotificationReceiver.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        intent.setAction("com.myown.receiver.Message");
+        intent.addCategory("android.intent.category.DEFAULT");
+        PendingIntent pd = PendingIntent.getBroadcast(this, 0, intent, 0);
+
+        myAlarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 20000 * 6, pd);
 
 
     }
@@ -38,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setAction("com.myown.receiver.Message");
         intent.addCategory("android.intent.category.DEFAULT");
-        PendingIntent pd = PendingIntent.getBroadcast(this,0,intent,0);
+        PendingIntent pd = PendingIntent.getBroadcast(this, 0, intent, 0);
         myAlarmManager.cancel(pd);
-        Toast.makeText(this,"Alarm stopped",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Alarm stopped", Toast.LENGTH_SHORT).show();
 
 
     }
