@@ -48,7 +48,7 @@ public class NotificationReceiver extends BroadcastReceiver {
                 NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID1, "channel_1", NotificationManager.IMPORTANCE_HIGH);
                 notificationManager.createNotificationChannel(notificationChannel);
 
-                NotificationChannel notificationChannel1 = new NotificationChannel(CHANNEL_ID2, "channel_2", NotificationManager.IMPORTANCE_DEFAULT);
+                NotificationChannel notificationChannel1 = new NotificationChannel(CHANNEL_ID2, "channel_2", NotificationManager.IMPORTANCE_LOW);
                 notificationManager.createNotificationChannel(notificationChannel1);
             }
 
